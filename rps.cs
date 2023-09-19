@@ -1,172 +1,192 @@
 ﻿using System.Collections;
-using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
+using System.Collections.ObjectModel;
+using System.Runtime.InteropServices.Marshalling;
 
+using ANSI_COLORS;
+using SCREEN;
+using LANGUAGE;
+using System.Security.Cryptography.X509Certificates;
+using SPLASHSCREEN;
+using ENGLISH;
 
-
-class Game
+namespace RPS
 {
-    public static string playerChoice = "";
-    public static string npcChoice = "";
-    public static bool replay = true;
-    public static string language = "en";
-    public static ApplicationStrings appText = null;
-    public static Hashtable choices = new(){
-            { "R", "Rock" },
-            { "P", "Paper" },
-            { "S", "Scissors" }
-        };
-
-
-    public static void Main(string[] args)
+    public class Game
     {
-        appText = Game.ChooseLanguage(null);
-        StartScreen(appText);
-        while (replay)
-        {
-            Round(appText);
-        }
-    }
-
-    static void StartScreen(ApplicationStrings appText)
-    {
+        public static int player1Points = 0;
+        public static int player2Points = 0;
+        public static int playerPoints = 0;
+        public static int NPCPoints = 0;
+        public static int amountTies = 0;
 
         /*
-            Single or two-player
-            Choose language
-        */
-        Console.Clear();
-
-        Console.WriteLine(appText.LetsPlay);
-        Console.WriteLine(appText.ChooseLanguage);
-        Console.WriteLine(appText.StartGame);
-        int input = int.Parse(Console.ReadLine());
-        if(input == 1) {
-            Console.WriteLine("Do you want English or Norwegian?");
-            appText = Game.ChooseLanguage(null);
-        }
         
+        Fix bo3
+            Use proper code
 
-    }
+        Make splash screen load in
+            Use timer
+            Can skip with enter/esc (?)
+         
+        Make splash screen with timer and loading
 
-    static void Round(ApplicationStrings appText)
-    {
-        Console.Clear();
-        npcChoice = MakeNPCChoice(choices);
-        // Untill the player chooses a valid option, keep asking
-        playerChoice = "";
-        while (choices.ContainsKey(playerChoice) == false)
+        */
+    
+        public static Hashtable choices = LangEN.setChoiceEN();
+        
+        public static void Main(string[] args)
         {
-            Console.WriteLine(appText.ChooseWeapon + "\n" + $"{CombineChoices(choices, ", ")}");
-            playerChoice = (Console.ReadLine() ?? "").ToUpper();
-        }
-        // summarize the game and declare the winner 
-        Console.WriteLine(appText.YouChose + $"{choices[playerChoice]}" + appText.NPCChose + $"{choices[npcChoice]}.");
-        Console.WriteLine(DetermineWinner(appText, playerChoice, npcChoice));
-        Console.WriteLine(appText.PlayAgain);
-        if (Console.ReadLine().ToLower() == "n")
-        {
-            replay = false;
-            return;
-        }
-        Game.Round(appText);
-
-    }
-
-    static string MakeNPCChoice(Hashtable choices)
-    {
-        int min = 0;
-        int max = choices.Count;
-        int choiceIndex = new Random().Next(min, max);
-        return choices.Keys.OfType<string>().ElementAt(choiceIndex);
-    }
-
-    static string DetermineWinner(ApplicationStrings appText, string playerChoice, string npcChoice)
-    {
-        if (playerChoice == npcChoice)
-        {
-            return appText.Tie;
-        }
-        else if (playerChoice == "R" && npcChoice == "S" || playerChoice == "P" && npcChoice == "R" || playerChoice == "S" && npcChoice == "P")
-        {
-            return appText.YouWin;
+            Console.Clear();
+            StartScreen.createStartScreen();
         }
 
-        return appText.YouLose;
-
-    }
-
-    static string CombineChoices(Hashtable choices, string separator)
-    {
-        string combinedChoices = "";
-        foreach (DictionaryEntry choice in choices)
+        public static void gameLogic(bool twoPlayer = false, bool bo3 = false)
         {
-            combinedChoices += (choice.Value as string) + separator;
-        }
-        return combinedChoices.Remove(combinedChoices.Length - separator.Length);
-    }
+            int amountRounds = 3;
+            Console.Clear();
+            Console.WriteLine("\u001b[1m" + DifferentLanguages.appText.Welcome + "\u001b[0m");
 
-    public static ApplicationStrings ChooseLanguage(ApplicationStrings appText)
-    {
-        Console.Clear();
-        if(language != "en") {
-            language = Console.ReadLine().ToLower();
-        }
-        bool validLanguage = false;
-        if ((string.Equals(language, "english")) || (string.Equals(language, "en")) || (string.Equals(language, "engelsk")) || (string.Equals(language, "norwegian")) || (string.Equals(language, "no")) || (string.Equals(language, "norsk")))
-        {
-            validLanguage = true;
-        }
-        if ((string.Equals(language, "english")) || (string.Equals(language, "en")) || (string.Equals(language, "engelsk")) && validLanguage)
-        {
-            return new ApplicationStrings
+            if (!twoPlayer && !bo3)
             {
-                ChooseLanguage = "1: Do you want to choose a different language?",
-                StartGame = "2: Do you want to start the game?",
-                LetsPlay = "Let's play a Rock Paper Scissors!",
-                ChooseWeapon = "Choose your weapon!",
-                YouChose = "You chose ",
-                NPCChose = " and the NPC chose: ",
-                YouWin = "You won!",
-                YouLose = "You lost!",
-                Tie = "It's a tie!",
-                PlayAgain = "Do you want to play again? y/n"
-            };
-        }
-        else if ((string.Equals(language, "norwegian")) || (string.Equals(language, "no")) || (string.Equals(language, "norsk")) && validLanguage)
-        {
-            return new ApplicationStrings
+                singlePlayer();
+                EndScreen.createEndScreen();
+                return;
+            }
+            else if (!twoPlayer && bo3)
             {
-                StartGame = "2: Vil du starte spillet?",
-                LetsPlay = "La oss spille Stein Saks Papir!",
-                ChooseWeapon = "Velg ditt våpen: ",
-                YouChose = "Du valgte ",
-                NPCChose = " og NPCen valgte ",
-                YouWin = "Du vant!",
-                YouLose = "Du tapte!",
-                Tie = "Det ble uavgjort!",
-                PlayAgain = "Vil du spille igjen? y/n"
-            };
+                for (int i = 1; i <= 3; i++)
+                {
+                    ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Round + i, ANSI_COLORS.Colors.Underline);
+                    ANSI_COLORS.Colors.AddColor("Player 1 points: " + player1Points, ANSI_COLORS.Colors.BoldGreen);
+                    ANSI_COLORS.Colors.AddColor("NPC 2 points: " + NPCPoints, ANSI_COLORS.Colors.BoldRed);
+                    singlePlayer();
+                }
+                EndScreen.createEndScreen();
+                return;
+            }
+            else if (twoPlayer && !bo3)
+            {
+                hotSeat();
+                EndScreen.createEndScreen();
+                return;
+            }
+            else if (twoPlayer && bo3)
+            {
+                for (int i = 1; i <= amountRounds; i++)
+                {
+                    ANSI_COLORS.Colors.AddColor("Round " + i, ANSI_COLORS.Colors.Underline);
+                    ANSI_COLORS.Colors.AddColor("Player 1 points: " + player1Points, ANSI_COLORS.Colors.BoldGreen);
+                    ANSI_COLORS.Colors.AddColor("Player 2 points: " + player2Points, ANSI_COLORS.Colors.BoldBlue);
+                    hotSeat();
+                    if (amountTies > 0)
+                    {
+                        amountRounds++;
+                    }
+                }
+                EndScreen.createEndScreen();
+                return;
+            }
+
+
         }
-        else
+
+        public static void singlePlayer()
         {
-            return Game.ChooseLanguage(null);
+            string playerChoice = string.Empty;
+            string npcChoice = string.Empty;
+            while (choices.ContainsKey(playerChoice) == false)
+            {
+                Console.WriteLine($"Choose your weapon: {CombineChoices(choices, ", ")}");
+                playerChoice = (Console.ReadLine() ?? "").ToUpper();
+            }
+            Console.Clear();
+            npcChoice = MakeNPCChoice(choices);
+            Console.WriteLine($"You chose {choices[playerChoice]} and the NPC chose {choices[npcChoice]}.\n");
+            ANSI_COLORS.Colors.AddColor(DetermineWinnerNPC(playerChoice, npcChoice) + "\n", ANSI_COLORS.Colors.Bold);
+        }
+
+        public static void hotSeat()
+        {
+
+            string player1Choice = string.Empty;
+            string player2Choice = string.Empty;
+
+            while (choices.ContainsKey(player1Choice) == false)
+            {
+                ANSI_COLORS.Colors.AddColor($"\nPlayer 1 Weapon: : {CombineChoices(choices, ", ")}", ANSI_COLORS.Colors.Green);
+                player1Choice = (Console.ReadLine() ?? "").ToUpper();
+            }
+
+            while (choices.ContainsKey(player2Choice) == false)
+            {
+                ANSI_COLORS.Colors.AddColor($"Player 2 Weapon: : {CombineChoices(choices, ", ")}", ANSI_COLORS.Colors.Blue);
+                player2Choice = (Console.ReadLine() ?? "").ToUpper();
+            }
+
+            Console.Clear();
+            ANSI_COLORS.Colors.AddColor($"Player 1 chose {choices[player1Choice]}", ANSI_COLORS.Colors.Green, true);
+            Console.Write(" and ");
+            ANSI_COLORS.Colors.AddColor($"player 2 chose {choices[player1Choice]}", ANSI_COLORS.Colors.Blue, true);
+            ANSI_COLORS.Colors.AddColor("\n\n" + determineWinnerTwoPlayer(player1Choice, player2Choice) + "\n", ANSI_COLORS.Colors.Bold);
+        }
+
+        static string MakeNPCChoice(Hashtable choices)
+        {
+            int min = 0;
+            int max = choices.Count;
+            int choiceIndex = new Random().Next(min, max);
+            return choices.Keys.OfType<string>().ElementAt(choiceIndex);
+        }
+
+        public static string determineWinnerTwoPlayer(string player1Choice, string player2Choice)
+        {
+            if (player1Choice == player2Choice)
+            {
+                amountTies++;
+                return "It's a tie";
+            }
+            else if ((player1Choice == "1" && (player2Choice == "3" || player2Choice == "4")) ||
+                (player1Choice == "2" && (player2Choice == "1" || player2Choice == "5")) ||
+                (player1Choice == "3" && (player2Choice == "2" || player2Choice == "4")) ||
+                (player1Choice == "4" && (player2Choice == "5" || player2Choice == "2")) ||
+                (player1Choice == "5" && (player2Choice == "3" || player2Choice == "1")))
+            {
+                player1Points++;
+                return "Player 1 won!";
+            }
+            player2Points++;
+            return "Player 2 won!";
+        }
+
+        static string DetermineWinnerNPC(string playerChoice, string npcChoice)
+        {
+            if (playerChoice == npcChoice)
+            {
+                return "It's a tie";
+            }
+            else if ((playerChoice == "1" && (npcChoice == "3" || npcChoice == "4")) ||
+                (playerChoice == "2" && (npcChoice == "1" || npcChoice == "5")) ||
+                (playerChoice == "3" && (npcChoice == "2" || npcChoice == "4")) ||
+                (playerChoice == "4" && (npcChoice == "5" || npcChoice == "2")) ||
+                (playerChoice == "5" && (npcChoice == "3" || npcChoice == "1")))
+            {
+
+                playerPoints++;
+                return "You win";
+            }
+            NPCPoints++;
+            return "You lose";
+
+        }
+
+        static string CombineChoices(Hashtable choices, string separator)
+        {
+            string combinedChoices = "";
+            foreach (DictionaryEntry choice in choices)
+            {
+                combinedChoices += (choice.Value as string) + separator;
+            }
+            return combinedChoices.Remove(combinedChoices.Length - separator.Length);
         }
     }
-
-}
-
-class ApplicationStrings
-{
-    public string ChooseLanguage { get; set; }
-    public string NPCChose { get; set; }
-    public string StartGame { get; set; }
-    public string LetsPlay { get; set; }
-    public string ChooseWeapon { get; set; }
-    public string YouChose { get; set; }
-    public string YouWin { get; set; }
-    public string YouLose { get; set; }
-    public string Tie { get; set; }
-    public string PlayAgain { get; set; }
-
 }
