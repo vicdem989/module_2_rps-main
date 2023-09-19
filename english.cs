@@ -21,7 +21,7 @@ namespace ENGLISH
 
         public static ApplicationStrings appTextEN = new ApplicationStrings
         {
-            Welcome = "Let's play a Rock Paper Sicors!",
+            Welcome = "Let's play a Rock Paper Scissors!",
             Round = "Round "
         };
 

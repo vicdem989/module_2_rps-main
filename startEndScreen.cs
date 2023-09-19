@@ -44,9 +44,9 @@ namespace SCREEN
             Console.Clear();
             ANSI_COLORS.Colors.AddColor("Choose mode", ANSI_COLORS.Colors.Bold);
             ANSI_COLORS.Colors.AddColor("1: Singleplayer", ANSI_COLORS.Colors.Cyan);
-            ANSI_COLORS.Colors.AddColor("2: Singpleplayer bo3\n", ANSI_COLORS.Colors.Cyan);
+            ANSI_COLORS.Colors.AddColor("2: Singpleplayer boX\n", ANSI_COLORS.Colors.Cyan);
             ANSI_COLORS.Colors.AddColor("3: Two-Player", ANSI_COLORS.Colors.Magenta);
-            ANSI_COLORS.Colors.AddColor("4: Two-Player bo3", ANSI_COLORS.Colors.Magenta);
+            ANSI_COLORS.Colors.AddColor("4: Two-Player boX", ANSI_COLORS.Colors.Magenta);
             string input = Console.ReadLine().ToLower().Trim();
             if (input == "1")
             {
@@ -55,7 +55,7 @@ namespace SCREEN
             }
             else if (input == "2")
             {
-                Game.gameLogic(false, true);
+                Game.gameLogic(false, true, getInt());
             }
             else if (input == "3")
             {
@@ -64,14 +64,30 @@ namespace SCREEN
             }
             else if (input == "4")
             {
-                Game.gameLogic(true, true);
+                Game.gameLogic(true, true, getInt());
             }
             else
             {
                 chooseMode();
             }
         }
+
+        public static int getInt()
+        {
+            Console.Clear();
+            Console.WriteLine("How many rounds?");
+            string inputRound = Console.ReadLine();
+            int result = 0;
+            while (!int.TryParse(inputRound, out result))
+            {
+                Colors.Error("Input a number");
+                inputRound = Console.ReadLine();
+            }
+            return result;
+        }
     }
+
+
 
 
 
