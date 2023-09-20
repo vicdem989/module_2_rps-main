@@ -2,14 +2,15 @@
 using System.Collections.ObjectModel;
 using System.Runtime.InteropServices.Marshalling;
 using System.Security.Cryptography.X509Certificates;
+using System.Drawing;
+using System.Reflection.Metadata;
 
 using ANSI_COLORS;
 using SCREEN;
 using LANGUAGE;
 using SPLASHSCREEN;
 using ENGLISH;
-using System.Drawing;
-using System.Reflection.Metadata;
+
 
 namespace RPS
 {
@@ -25,12 +26,7 @@ namespace RPS
         
         Fix bo3
             Problem with boX and tie!
-
-        Make splash screen load in
-            Use timer
-            Can skip with enter/esc (?)
-         
-        Make splash screen with timer and loading
+            boX and tie works ish
 
         */
 
@@ -39,6 +35,7 @@ namespace RPS
         public static void Main(string[] args)
         {
             Console.Clear();
+            SplashSCreen.writeSplashScreen();
             StartScreen.createStartScreen();
         }
 
@@ -46,16 +43,14 @@ namespace RPS
         {
             Console.Clear();
             Console.WriteLine("\u001b[1m" + DifferentLanguages.appText.Welcome + "\u001b[0m");
-            
+
             playerPoints = 0;
             NPCPoints = 0;
 
             player1Points = 0;
             player2Points = 0;
 
-
-
-            if (bo3)
+            if (twoPlayer == false && bo3 == true)
             {
                 int bestOf = (amountRounds + 1) / 2;
                 Colors.AddColor(DifferentLanguages.appText.BestOf + bestOf + "\n", Colors.BoldWhite);
@@ -88,15 +83,21 @@ namespace RPS
             if (twoPlayer && bo3)
             {
                 int bestOf = (amountRounds + 1) / 2;
-                Colors.AddColor(DifferentLanguages.appText.BestOf + bestOf+ "\n", Colors.BoldWhite);
+                Colors.AddColor(DifferentLanguages.appText.BestOf + bestOf + "\n", Colors.BoldWhite);
                 for (int i = 1; i <= amountRounds; i++)
                 {
                     if (player1Points != bestOf && player2Points != bestOf)
                     {
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Round + i, ANSI_COLORS.Colors.Underline);
+                        amountTies = 0;
                         hotSeat();
+                        if (amountTies != 0)
+                        {
+                            amountRounds++;
+                        }
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player1Points + player1Points, ANSI_COLORS.Colors.BoldGreen);
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player2Points + player2Points + "\n", ANSI_COLORS.Colors.BoldRed);
+
                     }
                 }
                 if (player1Points > player2Points)
@@ -133,7 +134,7 @@ namespace RPS
 
             while (choices.ContainsKey(playerChoice) == false)
             {
-                Console.WriteLine( DifferentLanguages.appText.ChooseWeapon + $"{CombineChoices(choices, ", ")}");
+                Console.WriteLine(DifferentLanguages.appText.ChooseWeapon + $"{CombineChoices(choices, ", ")}");
                 playerChoice = (Console.ReadLine() ?? "").ToUpper();
             }
             Console.Clear();

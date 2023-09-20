@@ -22,6 +22,7 @@ namespace NORWEGIAN
         public static ApplicationStrings appTextNO = new ApplicationStrings
         {
             Welcome = "La oss spille stein, saks, papir, spock, øgle!",
+            MenuOptions = "Hva vil du gjøre?\n",
             BestOf = "Best av ",
             YouWon = "Gratulerer, du vant!",
             Tie = "Det er uavgjort!",
@@ -41,9 +42,9 @@ namespace NORWEGIAN
             Player2Chose = "Spiller 2 valgte ",
             YonWon = "Du vant!",
             YouLose = "Du tapte!",
-            StartGame = "1: Start spill",
-            changeLanguage = "2: Bytt språk",
-            ExitGame = "3: Avslutt spill",
+            StartGame = "1: Start spill\n",
+            changeLanguage = "2: Bytt språk\n",
+            ExitGame = "3: Avslutt spill\n",
             ChooseMode = "Velg modus",
             Singleplayer = "1: Enspiller",
             SingleplayerBoX = "2: Enspiller boX",

@@ -34,6 +34,7 @@ namespace LANGUAGE
 public class ApplicationStrings
 {
     public string Welcome { get; set; } = string.Empty;
+    public string MenuOptions { get; set; } = string.Empty;
     public string BestOf { get; set; } = string.Empty;
     public string YouWon { get; set; } = string.Empty;
     public string Tie { get; set; } = string.Empty;

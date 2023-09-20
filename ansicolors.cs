@@ -60,8 +60,19 @@ namespace ANSI_COLORS
             Console.WriteLine(modifier + $"{text}{Reset}");
         }
 
+        public static void AddColorChar(char text, string modifier = White, bool oneLine = false)
+        {
+            if(oneLine) {
+                Console.Write(modifier + $"{text}{Reset}");
+                return;
+            }
+            Console.WriteLine(modifier + $"{text}{Reset}");
+        }
+
         public static void Error(string text) {
             Console.WriteLine(BoldRed + text + Reset);
         }
+
+        
     }
 }

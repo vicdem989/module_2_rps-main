@@ -22,6 +22,7 @@ namespace ENGLISH
         public static ApplicationStrings appTextEN = new ApplicationStrings
         {
             Welcome = "Let us play rock paper scissor spock lizard!",
+            MenuOptions = "What do you want to do?\n",
             BestOf = "Best of ",
             YouWon = "Congratulations you won!",
             Tie = "It's a tie!",
@@ -41,9 +42,9 @@ namespace ENGLISH
             Player2Chose = "Player 2 chose ",
             YonWon = "You win!",
             YouLose = "You lose!",
-            StartGame = "1: Start game",
-            changeLanguage  = "2: Change language",
-            ExitGame = "3: Exit game",
+            StartGame = "1: Start game\n",
+            changeLanguage  = "2: Change language\n",
+            ExitGame = "3: Exit game\n",
             ChooseMode = "Choose mode",
             Singleplayer = "1: Singleplayer",
             SingleplayerBoX = "2: Singpleplayer boX",

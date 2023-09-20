@@ -12,10 +12,31 @@ namespace SCREEN
     {
         public static void createStartScreen()
         {
-            Console.Clear();
-            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.StartGame, ANSI_COLORS.Colors.Green);
-            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.changeLanguage, ANSI_COLORS.Colors.Cyan);
-            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.ExitGame, ANSI_COLORS.Colors.Red);
+            char letterToBeOutputted;
+            for (int i = 0; i < DifferentLanguages.appText.MenuOptions.Length; i++)
+            {
+                letterToBeOutputted = DifferentLanguages.appText.MenuOptions[i];
+                ANSI_COLORS.Colors.AddColorChar(letterToBeOutputted, ANSI_COLORS.Colors.BoldGreen, true);
+                Thread.Sleep(90);
+            }
+            for (int i = 0; i < DifferentLanguages.appText.StartGame.Length; i++)
+            {
+                letterToBeOutputted = DifferentLanguages.appText.StartGame[i];
+                ANSI_COLORS.Colors.AddColorChar(letterToBeOutputted, ANSI_COLORS.Colors.White, true);
+                Thread.Sleep(90);
+            }
+            for (int i = 0; i < DifferentLanguages.appText.changeLanguage.Length; i++)
+            {
+                letterToBeOutputted = DifferentLanguages.appText.changeLanguage[i];
+                ANSI_COLORS.Colors.AddColorChar(letterToBeOutputted, ANSI_COLORS.Colors.White, true);
+                Thread.Sleep(90);
+            }
+            for (int i = 0; i < DifferentLanguages.appText.ExitGame.Length; i++)
+            {
+                letterToBeOutputted = DifferentLanguages.appText.ExitGame[i];
+                ANSI_COLORS.Colors.AddColorChar(letterToBeOutputted, ANSI_COLORS.Colors.Red, true);
+                Thread.Sleep(90);
+            }
 
             string input = Console.ReadLine().ToLower().Trim();
             if (input == "1")
