@@ -21,8 +21,40 @@ namespace NORWEGIAN
 
         public static ApplicationStrings appTextNO = new ApplicationStrings
         {
-            Welcome = "La oss spille Stein Saks Papir!",
-            Round = "Runde "
+            Welcome = "La oss spille stein, saks, papir, spock, øgle!",
+            BestOf = "Best av ",
+            YouWon = "Gratulerer, du vant!",
+            Tie = "Det er uavgjort!",
+            NPCWon = "NPC vant!",
+            PlayerPoints = "Dine poeng: ",
+            NPCPoints = "NPCs poeng: ",
+            Player1Points = "Spiller 1 poeng: ",
+            Player2Points = "Spiller 2 poeng: ",
+            Player1Won = "Spiller 1 vant!",
+            Player2Won = "Spiller 2 vant!",
+            ChooseWeapon = "Velg ditt våpen: ",
+            YouChose = "Du valgte ",
+            NPCChose = " og NPC valgte ",
+            Player1Weapon = "Spiller 1 våpen: ",
+            Player2Weapon = "Spiller 2 våpen: ",
+            Player1Chose = "Spiller 1 valgte ",
+            Player2Chose = "Spiller 2 valgte ",
+            YonWon = "Du vant!",
+            YouLose = "Du tapte!",
+            StartGame = "1: Start spill",
+            changeLanguage = "2: Bytt språk",
+            ExitGame = "3: Avslutt spill",
+            ChooseMode = "Velg modus",
+            Singleplayer = "1: Enspiller",
+            SingleplayerBoX = "2: Enspiller boX",
+            TwoPlayer = "3: To spillere",
+            TwoPlayerBoX = "4: To spillere boX",
+            Rounds = "Hvor mange runder?",
+            RoundsError = "Skriv inn et tall",
+            Replay = "Vil du spille igjen? j/n",
+            Menu = "Tilbake til [m]eny",
+            ThanksForPlaying = "Takk for at du spilte",
+            Round = "Runde: "
         };
 
 

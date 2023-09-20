@@ -13,9 +13,9 @@ namespace SCREEN
         public static void createStartScreen()
         {
             Console.Clear();
-            ANSI_COLORS.Colors.AddColor("1: Start game", ANSI_COLORS.Colors.Green);
-            ANSI_COLORS.Colors.AddColor("2: Change language", ANSI_COLORS.Colors.Cyan);
-            ANSI_COLORS.Colors.AddColor("3: Exit game", ANSI_COLORS.Colors.Red);
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.StartGame, ANSI_COLORS.Colors.Green);
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.changeLanguage, ANSI_COLORS.Colors.Cyan);
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.ExitGame, ANSI_COLORS.Colors.Red);
 
             string input = Console.ReadLine().ToLower().Trim();
             if (input == "1")
@@ -42,11 +42,12 @@ namespace SCREEN
         public static void chooseMode()
         {
             Console.Clear();
-            ANSI_COLORS.Colors.AddColor("Choose mode", ANSI_COLORS.Colors.Bold);
-            ANSI_COLORS.Colors.AddColor("1: Singleplayer", ANSI_COLORS.Colors.Cyan);
-            ANSI_COLORS.Colors.AddColor("2: Singpleplayer boX\n", ANSI_COLORS.Colors.Cyan);
-            ANSI_COLORS.Colors.AddColor("3: Two-Player", ANSI_COLORS.Colors.Magenta);
-            ANSI_COLORS.Colors.AddColor("4: Two-Player boX", ANSI_COLORS.Colors.Magenta);
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.ChooseMode, ANSI_COLORS.Colors.Bold);
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Singleplayer, ANSI_COLORS.Colors.Cyan);
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.SingleplayerBoX, ANSI_COLORS.Colors.Cyan);
+            Console.WriteLine("\n");
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.TwoPlayer, ANSI_COLORS.Colors.Magenta);
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.TwoPlayerBoX, ANSI_COLORS.Colors.Magenta);
             string input = Console.ReadLine().ToLower().Trim();
             if (input == "1")
             {
@@ -75,12 +76,12 @@ namespace SCREEN
         public static int getInt()
         {
             Console.Clear();
-            Console.WriteLine("How many rounds?");
+            Console.WriteLine(DifferentLanguages.appText.Rounds);
             string inputRound = Console.ReadLine();
             int result = 0;
             while (!int.TryParse(inputRound, out result))
             {
-                Colors.Error("Input a number");
+                Colors.Error(DifferentLanguages.appText.RoundsError);
                 inputRound = Console.ReadLine();
             }
             return result;
@@ -95,10 +96,10 @@ namespace SCREEN
     {
         public static void createEndScreen()
         {
-            Console.WriteLine("Do you want to play again? y/n");
-            Console.WriteLine("Back to [m]enu");
+            Console.WriteLine(DifferentLanguages.appText.Replay + "\n");
+            Console.WriteLine(DifferentLanguages.appText.Menu);
             string input = Console.ReadLine().ToLower().Trim();
-            if (input == "y")
+            if (input == "y" || input == "j")
             {
                 StartScreen.chooseMode();
             }
@@ -108,7 +109,8 @@ namespace SCREEN
             }
             else
             {
-                ANSI_COLORS.Colors.AddColor("\nThanks for playing", ANSI_COLORS.Colors.BoldMagenta);
+                Console.WriteLine("\n");
+                ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.ThanksForPlaying, ANSI_COLORS.Colors.BoldMagenta);
             }
 
         }

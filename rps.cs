@@ -9,6 +9,7 @@ using LANGUAGE;
 using SPLASHSCREEN;
 using ENGLISH;
 using System.Drawing;
+using System.Reflection.Metadata;
 
 namespace RPS
 {
@@ -57,28 +58,28 @@ namespace RPS
             if (bo3)
             {
                 int bestOf = (amountRounds + 1) / 2;
-                Colors.AddColor("Best of " + bestOf + "\n", Colors.BoldWhite);
+                Colors.AddColor(DifferentLanguages.appText.BestOf + bestOf + "\n", Colors.BoldWhite);
                 for (int i = 1; i <= amountRounds; i++)
                 {
                     if (playerPoints != bestOf && NPCPoints != bestOf)
                     {
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Round + i, ANSI_COLORS.Colors.Underline);
                         singlePlayer();
-                        ANSI_COLORS.Colors.AddColor("Player 1 points: " + playerPoints, ANSI_COLORS.Colors.BoldGreen);
-                        ANSI_COLORS.Colors.AddColor("NPC 2 points: " + NPCPoints + "\n", ANSI_COLORS.Colors.BoldRed);
+                        ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.PlayerPoints + playerPoints, ANSI_COLORS.Colors.BoldGreen);
+                        ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.NPCPoints + NPCPoints + "\n", ANSI_COLORS.Colors.BoldRed);
                     }
                 }
                 if (playerPoints > NPCPoints)
                 {
-                    Colors.AddColor("Congratulations you won!", ANSI_COLORS.Colors.BoldGreen);
+                    Colors.AddColor(DifferentLanguages.appText.YouWon, ANSI_COLORS.Colors.BoldGreen);
                 }
                 else if (playerPoints == NPCPoints)
                 {
-                    Colors.AddColor("It's a tie!", ANSI_COLORS.Colors.BoldBlue);
+                    Colors.AddColor(DifferentLanguages.appText.Tie, ANSI_COLORS.Colors.BoldBlue);
                 }
                 else
                 {
-                    Colors.AddColor("The NPC won!", ANSI_COLORS.Colors.BoldRed);
+                    Colors.AddColor(DifferentLanguages.appText.NPCWon, ANSI_COLORS.Colors.BoldRed);
                 }
 
                 EndScreen.createEndScreen();
@@ -87,28 +88,28 @@ namespace RPS
             if (twoPlayer && bo3)
             {
                 int bestOf = (amountRounds + 1) / 2;
-                Colors.AddColor("Best of " + bestOf+ "\n", Colors.BoldWhite);
+                Colors.AddColor(DifferentLanguages.appText.BestOf + bestOf+ "\n", Colors.BoldWhite);
                 for (int i = 1; i <= amountRounds; i++)
                 {
                     if (player1Points != bestOf && player2Points != bestOf)
                     {
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Round + i, ANSI_COLORS.Colors.Underline);
                         hotSeat();
-                        ANSI_COLORS.Colors.AddColor("Player 1 points: " + player1Points, ANSI_COLORS.Colors.BoldGreen);
-                        ANSI_COLORS.Colors.AddColor("NPC 2 points: " + player2Points + "\n", ANSI_COLORS.Colors.BoldRed);
+                        ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player1Points + player1Points, ANSI_COLORS.Colors.BoldGreen);
+                        ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player2Points + player2Points + "\n", ANSI_COLORS.Colors.BoldRed);
                     }
                 }
                 if (player1Points > player2Points)
                 {
-                    Colors.AddColor("Congratulations player 1 won!", ANSI_COLORS.Colors.BoldGreen);
+                    Colors.AddColor(DifferentLanguages.appText.Player1Won, ANSI_COLORS.Colors.BoldGreen);
                 }
                 else if (player1Points == player2Points)
                 {
-                    Colors.AddColor("It's a tie!", ANSI_COLORS.Colors.BoldBlue);
+                    Colors.AddColor(DifferentLanguages.appText.Tie, ANSI_COLORS.Colors.BoldBlue);
                 }
                 else
                 {
-                    Colors.AddColor("Congratulations player 2 won!", ANSI_COLORS.Colors.BoldRed);
+                    Colors.AddColor(DifferentLanguages.appText.Player2Won, ANSI_COLORS.Colors.BoldRed);
                 }
                 EndScreen.createEndScreen();
                 return;
@@ -132,12 +133,12 @@ namespace RPS
 
             while (choices.ContainsKey(playerChoice) == false)
             {
-                Console.WriteLine($"Choose your weapon: {CombineChoices(choices, ", ")}");
+                Console.WriteLine( DifferentLanguages.appText.ChooseWeapon + $"{CombineChoices(choices, ", ")}");
                 playerChoice = (Console.ReadLine() ?? "").ToUpper();
             }
             Console.Clear();
             npcChoice = MakeNPCChoice(choices);
-            Console.WriteLine($"You chose {choices[playerChoice]} and the NPC chose {choices[npcChoice]}.\n");
+            Console.WriteLine(DifferentLanguages.appText.YouChose + $"{choices[playerChoice]}" + DifferentLanguages.appText.NPCChose + $"{choices[npcChoice]}\n");
             ANSI_COLORS.Colors.AddColor(DetermineWinnerNPC(playerChoice, npcChoice) + "\n", ANSI_COLORS.Colors.Bold);
         }
 
@@ -149,20 +150,20 @@ namespace RPS
 
             while (choices.ContainsKey(player1Choice) == false)
             {
-                ANSI_COLORS.Colors.AddColor($"\nPlayer 1 Weapon: : {CombineChoices(choices, ", ")}", ANSI_COLORS.Colors.Green);
+                ANSI_COLORS.Colors.AddColor("\n" + DifferentLanguages.appText.Player1Weapon + $"{CombineChoices(choices, ", ")}", ANSI_COLORS.Colors.Green);
                 player1Choice = (Console.ReadLine() ?? "").ToUpper();
             }
 
             while (choices.ContainsKey(player2Choice) == false)
             {
-                ANSI_COLORS.Colors.AddColor($"Player 2 Weapon: : {CombineChoices(choices, ", ")}", ANSI_COLORS.Colors.Blue);
+                ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player2Weapon + $"{CombineChoices(choices, ", ")}", ANSI_COLORS.Colors.Blue);
                 player2Choice = (Console.ReadLine() ?? "").ToUpper();
             }
 
             Console.Clear();
-            ANSI_COLORS.Colors.AddColor($"Player 1 chose {choices[player1Choice]}", ANSI_COLORS.Colors.Green, true);
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player1Chose + $"{choices[player1Choice]}", ANSI_COLORS.Colors.Green, true);
             Console.Write(" and ");
-            ANSI_COLORS.Colors.AddColor($"player 2 chose {choices[player1Choice]}", ANSI_COLORS.Colors.Blue, true);
+            ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player2Chose + $"{choices[player1Choice]}", ANSI_COLORS.Colors.Blue, true);
             ANSI_COLORS.Colors.AddColor("\n\n" + determineWinnerTwoPlayer(player1Choice, player2Choice) + "\n", ANSI_COLORS.Colors.Bold);
         }
 
@@ -179,7 +180,7 @@ namespace RPS
             if (player1Choice == player2Choice)
             {
                 amountTies++;
-                return "It's a tie";
+                return DifferentLanguages.appText.Tie;
             }
             else if ((player1Choice == "1" && (player2Choice == "3" || player2Choice == "4")) ||
                 (player1Choice == "2" && (player2Choice == "1" || player2Choice == "5")) ||
@@ -188,17 +189,17 @@ namespace RPS
                 (player1Choice == "5" && (player2Choice == "3" || player2Choice == "1")))
             {
                 player1Points++;
-                return "Player 1 won!";
+                return DifferentLanguages.appText.Player1Won;
             }
             player2Points++;
-            return "Player 2 won!";
+            return DifferentLanguages.appText.Player2Won;
         }
 
         static string DetermineWinnerNPC(string playerChoice, string npcChoice)
         {
             if (playerChoice == npcChoice)
             {
-                return "It's a tie";
+                return DifferentLanguages.appText.Tie;
             }
             else if ((playerChoice == "1" && (npcChoice == "3" || npcChoice == "4")) ||
                 (playerChoice == "2" && (npcChoice == "1" || npcChoice == "5")) ||
@@ -208,10 +209,10 @@ namespace RPS
             {
 
                 playerPoints++;
-                return "You win";
+                return DifferentLanguages.appText.YouWon;
             }
             NPCPoints++;
-            return "You lose";
+            return DifferentLanguages.appText.YouLose;
 
         }
 

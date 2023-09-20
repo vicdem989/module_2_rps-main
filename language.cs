@@ -34,6 +34,41 @@ namespace LANGUAGE
 public class ApplicationStrings
 {
     public string Welcome { get; set; } = string.Empty;
+    public string BestOf { get; set; } = string.Empty;
+    public string YouWon { get; set; } = string.Empty;
+    public string Tie { get; set; } = string.Empty;
+    public string NPCWon { get; set; } = string.Empty;
+    public string PlayerPoints { get; set; } = string.Empty;
+    public string NPCPoints { get; set; } = string.Empty;
+    public string Player1Points { get; set; } = string.Empty;
+    public string Player2Points { get; set; } = string.Empty;
+    public string Player1Won { get; set; } = string.Empty;
+    public string Player2Won { get; set; } = string.Empty;
+    public string ChooseWeapon { get; set; } = string.Empty;
+    public string YouChose { get; set; } = string.Empty;
+    public string NPCChose { get; set; } = string.Empty;
+    public string Player1Weapon { get; set; } = string.Empty;
+    public string Player2Weapon { get; set; } = string.Empty;
+    public string Player1Chose { get; set; } = string.Empty;
+    public string Player2Chose { get; set; } = string.Empty;
+    public string YonWon { get; set; } = string.Empty;
+    public string YouLose { get; set; } = string.Empty;
+    public string StartGame { get; set; } = string.Empty;
+    public string changeLanguage { get; set; } = string.Empty;
+    public string ExitGame { get; set; } = string.Empty;
+    public string ChooseMode { get; set; } = string.Empty;
+    public string Singleplayer { get; set; } = string.Empty;
+    public string SingleplayerBoX { get; set; } = string.Empty;
+    public string TwoPlayer { get; set; } = string.Empty;
+    public string TwoPlayerBoX { get; set; } = string.Empty;
+    public string Rounds { get; set; } = string.Empty;
+    public string RoundsError { get; set; } = string.Empty;
+    public string Replay { get; set; } = string.Empty;
+    public string Menu { get; set; } = string.Empty;
+    public string ThanksForPlaying { get; set; } = string.Empty;
+
+
+
     public string Round { get; set; } = string.Empty;
 
 }
