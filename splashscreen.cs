@@ -23,7 +23,6 @@ namespace SPLASHSCREEN
 
         public static void LoadingBar()
         {
-            //Console.WriteLine("Loading...");
             for (int i = 0; i < 200; i++)
             {
                 Thread.Sleep(10);
@@ -41,7 +40,7 @@ namespace SPLASHSCREEN
             int minNumber = 5;
             int maxNumber = 1000;
             char letterToBeOutputted;
-            string loadingMenu = "Loading menu ";
+            string loadingMenu = "Loading menu... ";
             for (int i = 0; i < 13; i++)
             {
                 letterToBeOutputted = loadingMenu[i];
@@ -58,7 +57,7 @@ namespace SPLASHSCREEN
 
                 string bar = i + "%";
 
-                Console.Write("\rLoading menu " + bar);
+                Console.Write("\rLoading menu... " + bar);
             }
             Console.WriteLine();
             Console.Clear();
