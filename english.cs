@@ -17,8 +17,6 @@ namespace ENGLISH
                 { "5", "[5]Lizzard" }
             };
         }
-
-
         public static ApplicationStrings appTextEN = new ApplicationStrings
         {
             Welcome = "Let us play rock paper scissor spock lizard!",

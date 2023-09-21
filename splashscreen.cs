@@ -1,17 +1,13 @@
 using ANSI_COLORS;
 using LANGUAGE;
 
-
 namespace SPLASHSCREEN
 {
     public static class SplashSCreen
     {
-        /*
-            Can skip with enter or esc?
-        */
+
         public static void writeSplashScreen()
         {
-
             Colors.AddColor("Welcome to rock, paper, scissors, spock, lizard!", Colors.Green);
             LoadingBar();
             Colors.AddColor("Where only the most brutal of plays take place!", Colors.Magenta);
@@ -20,7 +16,6 @@ namespace SPLASHSCREEN
             LoadingBar();
             LoadingNumber();
         }
-
         public static void LoadingBar()
         {
             for (int i = 0; i < 200; i++)

@@ -1,16 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.ObjectModel;
-using System.Runtime.InteropServices.Marshalling;
-using System.Security.Cryptography.X509Certificates;
-using System.Drawing;
-using System.Reflection.Metadata;
 
 using ANSI_COLORS;
 using SCREEN;
 using LANGUAGE;
 using SPLASHSCREEN;
 using ENGLISH;
-
 
 namespace RPS
 {
@@ -21,14 +15,6 @@ namespace RPS
         public static int playerPoints = 0;
         public static int NPCPoints = 0;
         public static int amountTies = 0;
-
-        /*
-        
-        Fix bo3
-            Problem with boX and tie!
-            boX and tie works ish
-
-        */
 
         public static Hashtable choices = LangEN.setChoiceEN();
 
@@ -50,7 +36,7 @@ namespace RPS
             player1Points = 0;
             player2Points = 0;
 
-            if (twoPlayer == false && bo3 == true)
+            if (!twoPlayer && bo3)
             {
                 int bestOf = (amountRounds + 1) / 2;
                 Colors.AddColor(DifferentLanguages.appText.BestOf + bestOf + "\n", Colors.BoldWhite);
@@ -59,7 +45,12 @@ namespace RPS
                     if (playerPoints != bestOf && NPCPoints != bestOf)
                     {
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Round + i, ANSI_COLORS.Colors.Underline);
+                        amountTies = 0;
                         singlePlayer();
+                        if (amountTies != 0)
+                        {
+                            amountRounds++;
+                        }
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.PlayerPoints + playerPoints, ANSI_COLORS.Colors.BoldGreen);
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.NPCPoints + NPCPoints + "\n", ANSI_COLORS.Colors.BoldRed);
                     }
@@ -121,10 +112,8 @@ namespace RPS
                 EndScreen.createEndScreen();
                 return;
             }
-
             singlePlayer();
             EndScreen.createEndScreen();
-
         }
 
         public static void singlePlayer()
@@ -208,13 +197,11 @@ namespace RPS
                 (playerChoice == "4" && (npcChoice == "5" || npcChoice == "2")) ||
                 (playerChoice == "5" && (npcChoice == "3" || npcChoice == "1")))
             {
-
                 playerPoints++;
                 return DifferentLanguages.appText.YouWon;
             }
             NPCPoints++;
             return DifferentLanguages.appText.YouLose;
-
         }
 
         static string CombineChoices(Hashtable choices, string separator)

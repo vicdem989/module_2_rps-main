@@ -4,10 +4,8 @@ using RPS;
 
 namespace NORWEGIAN
 {
-
     public class LangNO
     {
-
         public static Hashtable setChoiceNO()
         {
             return Game.choices = new(){
@@ -18,7 +16,6 @@ namespace NORWEGIAN
                 { "5", "[5]Ogle" }
                 };
         }
-
         public static ApplicationStrings appTextNO = new ApplicationStrings
         {
             Welcome = "La oss spille stein, saks, papir, spock, øgle!",
@@ -57,7 +54,5 @@ namespace NORWEGIAN
             ThanksForPlaying = "Takk for at du spilte",
             Round = "Runde: "
         };
-
-
     }
 }
