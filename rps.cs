@@ -21,7 +21,7 @@ namespace RPS
         public static void Main(string[] args)
         {
             Console.Clear();
-            SplashSCreen.writeSplashScreen();
+            //SplashSCreen.writeSplashScreen();
             StartScreen.createStartScreen();
         }
 
@@ -88,7 +88,6 @@ namespace RPS
                         }
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player1Points + player1Points, ANSI_COLORS.Colors.BoldGreen);
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player2Points + player2Points + "\n", ANSI_COLORS.Colors.BoldRed);
-
                     }
                 }
                 if (player1Points > player2Points)
@@ -149,7 +148,6 @@ namespace RPS
                 ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player2Weapon + $"{CombineChoices(choices, ", ")}", ANSI_COLORS.Colors.Blue);
                 player2Choice = (Console.ReadLine() ?? "").ToUpper();
             }
-
             Console.Clear();
             ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player1Chose + $"{choices[player1Choice]}", ANSI_COLORS.Colors.Green, true);
             Console.Write(" and ");

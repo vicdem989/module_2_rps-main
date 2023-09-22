@@ -69,7 +69,5 @@ namespace ANSI_COLORS
         public static void Error(string text) {
             Console.WriteLine(BoldRed + text + Reset);
         }
-
-        
     }
 }

@@ -6,34 +6,14 @@ namespace SCREEN
 {
     public class StartScreen
     {
-        public static void createStartScreen(int delay = 80)
+        public static void createStartScreen(int sleepTime = 75)
         {
             Console.Clear();
             char letterToBeOutputted;
-            for (int i = 0; i < DifferentLanguages.appText.MenuOptions.Length; i++)
-            {
-                letterToBeOutputted = DifferentLanguages.appText.MenuOptions[i];
-                ANSI_COLORS.Colors.AddColorChar(letterToBeOutputted, ANSI_COLORS.Colors.BoldGreen, true);
-                Thread.Sleep(delay);
-            }
-            for (int i = 0; i < DifferentLanguages.appText.StartGame.Length; i++)
-            {
-                letterToBeOutputted = DifferentLanguages.appText.StartGame[i];
-                ANSI_COLORS.Colors.AddColorChar(letterToBeOutputted, ANSI_COLORS.Colors.White, true);
-                Thread.Sleep(delay);
-            }
-            for (int i = 0; i < DifferentLanguages.appText.changeLanguage.Length; i++)
-            {
-                letterToBeOutputted = DifferentLanguages.appText.changeLanguage[i];
-                ANSI_COLORS.Colors.AddColorChar(letterToBeOutputted, ANSI_COLORS.Colors.White, true);
-                Thread.Sleep(delay);
-            }
-            for (int i = 0; i < DifferentLanguages.appText.ExitGame.Length; i++)
-            {
-                letterToBeOutputted = DifferentLanguages.appText.ExitGame[i];
-                ANSI_COLORS.Colors.AddColorChar(letterToBeOutputted, ANSI_COLORS.Colors.Red, true);
-                Thread.Sleep(delay);
-            }
+            startScreenText(DifferentLanguages.appText.MenuOptions, ANSI_COLORS.Colors.BoldGreen, sleepTime);
+            startScreenText(DifferentLanguages.appText.StartGame, ANSI_COLORS.Colors.White, sleepTime);
+            startScreenText(DifferentLanguages.appText.changeLanguage, ANSI_COLORS.Colors.White, sleepTime);
+            startScreenText(DifferentLanguages.appText.ExitGame, ANSI_COLORS.Colors.Red, sleepTime);
 
             string input = Console.ReadLine().ToLower().Trim();
             if (input == "1")
@@ -43,6 +23,7 @@ namespace SCREEN
             else if (input == "2")
             {
                 Console.Clear();
+
                 DifferentLanguages.appText = DifferentLanguages.chooseLanguage();
                 createStartScreen(0);
             }
@@ -54,6 +35,17 @@ namespace SCREEN
             else
             {
                 createStartScreen(0);
+            }
+        }
+
+        static void startScreenText(string outputString, string color, int sleepTime)
+        {
+            char letterToBeOutputted;
+            for (int i = 0; i < outputString.Length; i++)
+            {
+                letterToBeOutputted = outputString[i];
+                ANSI_COLORS.Colors.AddColorChar(letterToBeOutputted, color, true);
+                Thread.Sleep(sleepTime);
             }
         }
 
@@ -101,6 +93,21 @@ namespace SCREEN
                 Colors.Error(DifferentLanguages.appText.RoundsError);
                 inputRound = Console.ReadLine();
             }
+            if (result >= 15)
+            {
+                double timeToComplete = (result * 5) / 60;
+                Colors.Error(DifferentLanguages.appText.TimeEstimate + timeToComplete + DifferentLanguages.appText.Minutes);
+                Colors.AddColor(DifferentLanguages.appText.WantToContinue + result + DifferentLanguages.appText.RoundsCheck, Colors.BoldYellow);
+                string input = Console.ReadLine();
+                if (input == "y" || input == "j")
+                {
+                    return result;
+                }
+                else if (input == "n")
+                {
+                    getInt();
+                }
+            }
             return result;
         }
     }
@@ -118,6 +125,7 @@ namespace SCREEN
             }
             else if (input == "m")
             {
+                Console.Clear();
                 StartScreen.createStartScreen(0);
             }
             else

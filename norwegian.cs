@@ -52,7 +52,11 @@ namespace NORWEGIAN
             Replay = "Vil du spille igjen? j/n",
             Menu = "Tilbake til [m]eny",
             ThanksForPlaying = "Takk for at du spilte",
-            Round = "Runde: "
+            Round = "Runde: ",
+            TimeEstimate = "Antatt tid for å fullføre er ",
+            Minutes = " minutter",
+            WantToContinue = "Er du sikker på at du vi spille ",
+            RoundsCheck = " runder? j/n"
         };
     }
 }

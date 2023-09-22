@@ -4,8 +4,7 @@ using LANGUAGE;
 namespace SPLASHSCREEN
 {
     public static class SplashSCreen
-    {
-
+    
         public static void writeSplashScreen()
         {
             Colors.AddColor("Welcome to rock, paper, scissors, spock, lizard!", Colors.Green);
@@ -20,12 +19,11 @@ namespace SPLASHSCREEN
         {
             for (int i = 0; i < 200; i++)
             {
-                Thread.Sleep(10);
+                Thread.Sleep(1);
                 int width = (i + 1) / 4;
                 string bar = "[" + new string('#', width) + new string(' ', 50 - width) + "]";
                 Console.Write("\r" + bar);
             }
-            Console.WriteLine();
             Console.Clear();
         }
 
@@ -54,7 +52,6 @@ namespace SPLASHSCREEN
 
                 Console.Write("\rLoading menu... " + bar);
             }
-            Console.WriteLine();
             Console.Clear();
         }
     }

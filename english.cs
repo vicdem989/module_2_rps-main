@@ -4,7 +4,6 @@ using RPS;
 
 namespace ENGLISH
 {
-
     public class LangEN
     {
         public static Hashtable setChoiceEN()
@@ -41,7 +40,7 @@ namespace ENGLISH
             YonWon = "You win!",
             YouLose = "You lose!",
             StartGame = "1: Start game\n",
-            changeLanguage  = "2: Change language\n",
+            changeLanguage = "2: Change language\n",
             ExitGame = "3: Exit game\n",
             ChooseMode = "Choose mode",
             Singleplayer = "1: Singleplayer",
@@ -53,9 +52,11 @@ namespace ENGLISH
             Replay = "Do you want to play again? y/n",
             Menu = "Back to [m]enu",
             ThanksForPlaying = "Thanks for playing",
-            Round = "Round: "
+            Round = "Round: ",
+            TimeEstimate = "Estimated time to complete is ",
+            Minutes = " minutes",
+            WantToContinue = "Are you sure you want to play ",
+            RoundsCheck = " rounds? y/n"
         };
-
-
     }
 }
