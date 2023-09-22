@@ -1,7 +1,3 @@
-using System.ComponentModel;
-using System.Drawing;
-using System.Runtime.CompilerServices;
-
 namespace ANSI_COLORS
 {
     public class Colors
@@ -17,6 +13,7 @@ namespace ANSI_COLORS
         public const string White = "\u001b[37m";
         public const string Reset = "\u001b[0m";
 
+        //Bold Foreground
         public const string BoldBlack = "\u001b[30;1m"; 
         public const string BoldRed = "\u001b[31;1m";
         public const string BoldGreen = "\u001b[32;1m";
@@ -72,7 +69,5 @@ namespace ANSI_COLORS
         public static void Error(string text) {
             Console.WriteLine(BoldRed + text + Reset);
         }
-
-        
     }
 }

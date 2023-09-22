@@ -67,9 +67,9 @@ public class ApplicationStrings
     public string Replay { get; set; } = string.Empty;
     public string Menu { get; set; } = string.Empty;
     public string ThanksForPlaying { get; set; } = string.Empty;
-
-
-
     public string Round { get; set; } = string.Empty;
-
+    public string TimeEstimate { get; set; } = string.Empty;
+    public string Minutes { get; set; } = string.Empty;
+    public string WantToContinue { get; set; } = string.Empty;
+    public string RoundsCheck { get; set; } = string.Empty;
 }

@@ -4,7 +4,6 @@ using RPS;
 
 namespace NORWEGIAN
 {
-
     public class LangNO
     {
 
@@ -18,7 +17,6 @@ namespace NORWEGIAN
                 { "5", "[5]Ogle" }
                 };
         }
-
         public static ApplicationStrings appTextNO = new ApplicationStrings
         {
             Welcome = "La oss spille stein, saks, papir, spock, øgle!",
@@ -55,9 +53,11 @@ namespace NORWEGIAN
             Replay = "Vil du spille igjen? j/n",
             Menu = "Tilbake til [m]eny",
             ThanksForPlaying = "Takk for at du spilte",
-            Round = "Runde: "
+            Round = "Runde: ",
+            TimeEstimate = "Antatt tid for å fullføre er ",
+            Minutes = " minutter",
+            WantToContinue = "Er du sikker på at du vi spille ",
+            RoundsCheck = " runder? j/n"
         };
-
-
     }
 }

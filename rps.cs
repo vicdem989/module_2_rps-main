@@ -1,16 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.ObjectModel;
-using System.Runtime.InteropServices.Marshalling;
-using System.Security.Cryptography.X509Certificates;
-using System.Drawing;
-using System.Reflection.Metadata;
 
 using ANSI_COLORS;
 using SCREEN;
 using LANGUAGE;
 using SPLASHSCREEN;
 using ENGLISH;
-
 
 namespace RPS
 {
@@ -22,20 +16,12 @@ namespace RPS
         public static int NPCPoints = 0;
         public static int amountTies = 0;
 
-        /*
-        
-        Fix bo3
-            Problem with boX and tie!
-            boX and tie works ish
-
-        */
-
         public static Hashtable choices = LangEN.setChoiceEN();
 
         public static void Main(string[] args)
         {
             Console.Clear();
-            SplashSCreen.writeSplashScreen();
+            //SplashSCreen.writeSplashScreen();
             StartScreen.createStartScreen();
         }
 
@@ -97,7 +83,6 @@ namespace RPS
                         }
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player1Points + player1Points, ANSI_COLORS.Colors.BoldGreen);
                         ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player2Points + player2Points + "\n", ANSI_COLORS.Colors.BoldRed);
-
                     }
                 }
                 if (player1Points > player2Points)
@@ -124,7 +109,6 @@ namespace RPS
 
             singlePlayer();
             EndScreen.createEndScreen();
-
         }
 
         public static void singlePlayer()
@@ -160,7 +144,6 @@ namespace RPS
                 ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player2Weapon + $"{CombineChoices(choices, ", ")}", ANSI_COLORS.Colors.Blue);
                 player2Choice = (Console.ReadLine() ?? "").ToUpper();
             }
-
             Console.Clear();
             ANSI_COLORS.Colors.AddColor(DifferentLanguages.appText.Player1Chose + $"{choices[player1Choice]}", ANSI_COLORS.Colors.Green, true);
             Console.Write(" and ");
@@ -214,7 +197,6 @@ namespace RPS
             }
             NPCPoints++;
             return DifferentLanguages.appText.YouLose;
-
         }
 
         static string CombineChoices(Hashtable choices, string separator)
