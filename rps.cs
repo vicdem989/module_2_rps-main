@@ -15,13 +15,12 @@ namespace RPS
         public static int playerPoints = 0;
         public static int NPCPoints = 0;
         public static int amountTies = 0;
-
         public static Hashtable choices = LangEN.setChoiceEN();
 
         public static void Main(string[] args)
         {
             Console.Clear();
-            //SplashSCreen.writeSplashScreen();
+            SplashSCreen.writeSplashScreen();
             StartScreen.createStartScreen();
         }
 

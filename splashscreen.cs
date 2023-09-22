@@ -19,7 +19,7 @@ namespace SPLASHSCREEN
         {
             for (int i = 0; i < 200; i++)
             {
-                Thread.Sleep(1);
+                Thread.Sleep(10);
                 int width = (i + 1) / 4;
                 string bar = "[" + new string('#', width) + new string(' ', 50 - width) + "]";
                 Console.Write("\r" + bar);
