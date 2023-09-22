@@ -5,4 +5,8 @@ For the ANSI escape code I made a separate utilites file, allowing for a wide ar
 But is easy to access in later projects if I want to. The comments is to easily clarify which string block does what. 
 
 The custom feature I implemented isn't anything new or original. First I made it bo3, which there are some resemblance from in the code. 
-Later I decided to turn the bo3 into boX, allowing for a customizable amonut of 
+Later I decided to turn the bo3 into boX, allowing for a customizable amonut of rounds to be played. There is also a check that if the user inputs rounds < 15 then they have to confirm the amount of rounds. Here I managed to introduce a slight bug, it doesn't reset the amount of rounds after the first check.
+
+The biggest issue I kept running into is writing inefficient code. Yes, this is something that I will improve upon over time. But, I also feel it's my current biggest downfall.
+
+I could also have added a file called languages, where all the different languages would go into. Therefore, if I wanted to add more languages, they would be neatly organized.

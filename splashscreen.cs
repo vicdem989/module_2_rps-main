@@ -4,7 +4,7 @@ using LANGUAGE;
 namespace SPLASHSCREEN
 {
     public static class SplashSCreen
-    
+    {
         public static void writeSplashScreen()
         {
             Colors.AddColor("Welcome to rock, paper, scissors, spock, lizard!", Colors.Green);
